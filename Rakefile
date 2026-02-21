@@ -1,10 +1,7 @@
+require "bundler/setup"
 require "bundler/gem_tasks"
+require "rspec/core/rake_task"
 
-task :console do
-  require "awesome_print"
-  require "irb"
-  require "irb/completion"
-  require "mic"
-  ARGV.clear
-  IRB.start
-end
+RSpec::Core::RakeTask.new(:spec)
+
+task default: :spec

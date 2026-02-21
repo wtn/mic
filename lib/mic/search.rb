@@ -1,4 +1,6 @@
-class Mic
+require 'csv'
+
+module Mic
 
   class Search
 
@@ -21,11 +23,11 @@ class Mic
 
     def select_by(symbol, string, include_segments)
       @a = @a.select{ |m| m[:market_type] == 'O' } unless include_segments
-      @a.select{ |m| m[symbol] =~ Regexp.new(string, 'i') }
+      @a.select{ |m| m[symbol] =~ Regexp.new(string, Regexp::IGNORECASE) }
     end
 
     def file
-      File.expand_path('../../files/ISO10383.csv', File.dirname(__FILE__))
+      File.expand_path("../../files/ISO10383.csv", __dir__)
     end
 
   end
